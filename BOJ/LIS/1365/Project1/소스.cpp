@@ -1,4 +1,30 @@
 #include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+#pragma warning(disable:4996)
+const int N = 100001;
+int arr[N];
+
+int main() {
+	freopen("input.txt", "r", stdin);
+	int n; scanf("%d", &n);
+	for (int i = 0; i < n; i++) {
+		scanf("%d", &arr[i]);
+	}
+	vector <int> lis; lis.push_back(-1);
+	for (int i = 0; i < n; i++) {
+		if (lis.back() < arr[i]) lis.push_back(arr[i]);
+		else {
+			int it = lower_bound(lis.begin(), lis.end(),arr[i])-lis.begin();
+			lis[it] = arr[i];
+		}
+	}
+	printf("%zd\n",n-lis.size()+1);
+}
+
+/*
+#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
@@ -17,7 +43,7 @@ int get_max(int L, int R, int node, int leftnode, int rightnode) {
 void update(int idx, int val) {
 	seg[idx] = val;
 	while (idx) {
-		idx /= 2; 
+		idx /= 2;
 		seg[idx] = max(seg[2 * idx],seg[2 * idx + 1]);
 	}
 }
@@ -40,3 +66,5 @@ int main() {
 	}
 	cout << n - seg[1] << endl;
 }
+
+*/
