@@ -127,16 +127,20 @@
     <ClCompile Include="2960.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="3896.cpp" />
+    <ClCompile Include="3896.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="4948.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="6588.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="1978.txt" />
     <Text Include="2960.txt" />
     <Text Include="3896.txt" />
     <Text Include="4948.txt" />
+    <Text Include="6588.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
