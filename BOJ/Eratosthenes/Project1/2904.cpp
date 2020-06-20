@@ -3,9 +3,9 @@
 #include <cstring>
 using namespace std;
 #pragma warning(disable:4996)
-const int N = 1'000'000;
+const int N = 1'000'001;
 
-short int isPrime[N + 1];
+short int isPrime[N];
 vector <int> primes;
 
 void make_prime() {
