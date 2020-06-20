@@ -36,6 +36,9 @@
     <ClCompile Include="2904.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="1456.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="1978.txt" />
@@ -45,5 +48,6 @@
     <Text Include="6588.txt" />
     <Text Include="9421.txt" />
     <Text Include="2904.txt" />
+    <Text Include="1456.txt" />
   </ItemGroup>
 </Project>
