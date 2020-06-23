@@ -21,9 +21,13 @@
     <ClCompile Include="2166.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="11563.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="11758.txt" />
     <Text Include="2166.txt" />
+    <Text Include="11563.txt" />
   </ItemGroup>
 </Project>
