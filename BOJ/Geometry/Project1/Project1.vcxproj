@@ -28,7 +28,9 @@
     <ClCompile Include="11758.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="2162.cpp" />
+    <ClCompile Include="2162.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="2166.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -37,6 +39,7 @@
     <Text Include="10255.txt" />
     <Text Include="11563.txt" />
     <Text Include="11758.txt" />
+    <Text Include="16491.txt" />
     <Text Include="2162.txt" />
     <Text Include="2166.txt" />
   </ItemGroup>
