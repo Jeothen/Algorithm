@@ -17,12 +17,16 @@
   <ItemGroup>
     <Text Include="2003.txt" />
     <Text Include="2075.txt" />
+    <Text Include="2096.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="2003.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="2075.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="2096.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
