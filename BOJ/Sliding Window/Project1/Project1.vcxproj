@@ -20,12 +20,16 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="1644.txt" />
+    <Text Include="1806.txt" />
     <Text Include="2003.txt" />
     <Text Include="2075.txt" />
     <Text Include="2096.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="1644.cpp" />
+    <ClCompile Include="1644.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="1806.cpp" />
     <ClCompile Include="2003.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
