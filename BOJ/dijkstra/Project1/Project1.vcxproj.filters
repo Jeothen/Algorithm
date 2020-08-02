@@ -18,6 +18,7 @@
     <Text Include="15422.txt" />
     <Text Include="1753.txt" />
     <Text Include="1916.txt" />
+    <Text Include="1504.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="1753.cpp">
@@ -27,6 +28,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="1916.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="1504.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
