@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <Text Include="1238.txt" />
     <Text Include="1504.txt" />
     <Text Include="15422.txt" />
     <Text Include="1753.txt" />
@@ -26,6 +27,7 @@
     <Text Include="4485.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="1238.cpp" />
     <ClCompile Include="1504.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
