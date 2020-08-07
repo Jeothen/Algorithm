@@ -2,6 +2,7 @@
 #include <vector>
 #include <cmath>
 #include <queue>
+#include <string.h>
 #include <algorithm>
 using namespace std;
 #define node 102
@@ -15,27 +16,32 @@ double calt(const double& x1, const double& y1, const double& x2, const double& 
 }
 
 double dijkstra(){
+    
     priority_queue<pair<double,pair<int,pair<double,double>>>>pq;
     pq.push({0,{0,{point[0][0],point[0][1]}}});
     bool visit[node]; memset(visit,false,sizeof(visit));
     double t[node]; memset(t,INF,sizeof(t));
-
+    bool flag = false;
     while(!pq.empty()){
         double val = -pq.top().first; // time
         int idx = pq.top().second.first;
         double x = pq.top().second.second.first, y = pq.top().second.second.second;
         pq.pop();
-        t[idx] = val;
-        for (int i=0;i<=n+1;i++) cout << t[i] << " ";
-        cout << endl;
+        if (visit[idx]) continue;
         visit[idx] = true;
         for (int i=1; i<=n+1 ;i++){ // maximum n * n
             if (!visit[i]){
-                double nt = calt(x,y,point[i][0] ,point[i][1]);
-                pq.push({-nt,{i,{point[i][0],point[i][1]}}});
+                double nt;
+                if (flag) nt = calt(x, y, point[i][0], point[i][1]);
+                else nt = sqrt((x-point[i][0])*(x-point[i][0]) + (y-point[i][1])*(y-point[i][1]))/5;
+
+                if (t[i] > nt + val) {
+                    t[i] = nt + val;
+                    pq.push({-t[i],{i,{point[i][0],point[i][1]}}});
+                }
             }
         }
-        visit[idx] = true;
+        flag = true;
     }
     return t[n+1];
 }
