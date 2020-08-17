@@ -1,13 +1,14 @@
-#include <iostream>
+#include <stdio.h>
 #include <vector>
 #include <queue>
 #include "string.h"
 using namespace std;
 #define MAX_NODE 100'001
-#define INF 1'000'000'000
+#define INF 1987654321987654321
 
 typedef long long ll;
 
+bool visited[MAX_NODE];
 int N,M,D,E; int height[MAX_NODE];
 vector <pair<int,int>> vc[MAX_NODE];
 
@@ -18,17 +19,20 @@ ll dist[MAX_NODE][2];
 void dijkstra(int start){
     int col = 0;
     if (start == N) col = 1;
-    bool     visited[MAX_NODE] = {0,};
-    priority_queue<pair<ll,int> > pq; //거리, point
- //   memset(visited,false,sizeof(visited));
-
+    priority_queue<pair<ll,int>> pq; //거리, point
+    memset(visited,false,sizeof(visited));
+    
     pq.push({0,start});
     while(!pq.empty()){
-        ll acc = -pq.top().first; int now = pq.top().second;
-        visited[now] = true;
+        
+        ll acc = -pq.top().first;
+        int now = pq.top().second;
         pq.pop();
-        for (int i = 0; i < vc[now].size();i++){
-            int dis = vc[now][i].first, next = vc[now][i].second;
+        if (visited[now]) continue;
+        visited[now] = true;
+
+        for (auto i : vc[now]){
+            ll dis = i.first, next = i.second;
             if (!visited[next] && height[next] > height[now]) {
                 if (acc + dis < dist[next][col]){
                     dist[next][col] = acc + dis;
@@ -50,16 +54,17 @@ int main(){
         vc[b].push_back({n,a});
     }
 
-    ll ans = -INF, tmp = -INF;
-    for (int i=2; i<N;i++){
-        dist[i][0] = INF; dist[i][1] = INF;
-    }
+    ll ans = -INF;
+    
+    fill(&dist[0][0], &dist[MAX_NODE][2], INF);
+    dist[1][0] = 0; dist[N][1] = 0;
+    
     dijkstra(1); dijkstra(N);
 
     for (int i=2; i<N; i++){
         if (dist[i][0] == INF || dist[i][1] == INF) continue;
-        tmp = height[i] * E - D * (dist[i][0] + dist[i][1]);
-        ans =  max(tmp,ans);
+        ll tmp = height[i] * E - D * (dist[i][0] + dist[i][1]);
+        ans =  (ans < tmp) ? tmp : ans;
     }
     if (ans != -INF) printf("%lld\n", ans);
     else printf("Impossible\n");
