@@ -37,7 +37,7 @@ int main(){
         while(N--) {
             scanf("%s", str);
             if (ans && !root->insert(str)) {
-                ans = false; // break; ?? - 다음에 받는 값이 int n 이 아니라 string을 받게 되네...
+                ans = false; // break; ?? - 다음에 받는 값이 int n 이 아니라 string을 받게 됨
             }
         }
         if (ans) printf("YES\n");
