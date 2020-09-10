@@ -75,6 +75,7 @@ struct Trie
     }
 };
 
+fill(a,s,v);
 string reverse_char(string str) {
     cout << "str = " << str << endl;
     string reverse_str;
