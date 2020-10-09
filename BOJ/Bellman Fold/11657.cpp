@@ -18,7 +18,7 @@ int main(){
     dist[1] = 0;
     bool cycle = false;
     for (int i=0; i<n; i++){ // loop
-        for (int j=1; j<=n; j++) { // 시작점
+        for (int j=1; j<=n; j++) { // start point
             for (auto &p: vc[j]){
                 int next = p.first, val = p.second;
                 if (dist[j] != INF && dist[next] > dist[j] + val) {
