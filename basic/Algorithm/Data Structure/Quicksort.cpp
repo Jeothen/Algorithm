@@ -1,3 +1,13 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+void swap(int* a, int* b){
+	int* tmp = a;
+	a = b; b = tmp;
+}
+
 void quicksort(int *arr, int start, int end) {
 	int left = start;
 	int right = end;
