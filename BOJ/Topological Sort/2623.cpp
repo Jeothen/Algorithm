@@ -1,3 +1,61 @@
+#include <stdio.h>
+#include <vector>
+#include <queue>
+using namespace std;
+
+vector<int> adj[1001];
+int indegree[1001];
+int ans[1001];
+int N, M;
+queue<int> q;
+
+void solve()
+{
+    for (int i = 1; i <= N; i++)
+        if (!indegree[i])
+            q.push(i); // 이전 값이 없는 node
+    // topological sort
+    for (int i = 1; i <= N; i++)
+    { // N개
+        if (q.empty())
+        {
+            printf("0\n");
+            return;
+        }
+        int curr = q.front();
+        q.pop();
+        ans[i] = curr;
+        for (auto next : adj[curr])
+        {
+            if (!--indegree[next])
+                q.push(next);
+        }
+    }
+    for (int i = 1; i <= N; ++i) printf("%d\n",ans[i]);
+}
+
+int main()
+{
+    freopen("2623.txt", "r", stdin);
+    int cnt, prev, curr;
+    scanf("%d %d", &N, &M);
+    for (int i = 0; i < M; ++i)
+    {
+        scanf("%d", &cnt);
+        scanf("%d", &prev);
+        for (int j = 0; j < cnt-1; ++j)
+        {
+            scanf("%d", &curr);
+            adj[prev].push_back(curr);
+            indegree[curr]++;
+            prev = curr;
+        }
+    }
+    solve();
+}
+
+
+    /*
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -37,4 +95,4 @@ int main(){
     reverse(ans.begin(), ans.end());
     if (cycle) puts("0");
     for (auto output:ans) cout << output << endl;
-}
+}*/
