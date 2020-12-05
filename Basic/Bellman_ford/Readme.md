@@ -11,3 +11,6 @@
   * Since the order of update is changed according to the order of node visits, the update can be completed by going through the n-1 loop except for the first node.
 * However, if an update occurs on the n times as well, there is a negative cycle.
 
+
+
+* So, Time complexity is O(VE)    V : nodecount / E : edgecount

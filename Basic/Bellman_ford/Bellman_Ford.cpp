@@ -6,7 +6,14 @@ struct Edge {
 
 vector <Edge> edges;
 // or vector <Edge> edges[nodecount]
-
+/* for (int i=0; i<nodecount; i++)
+    for (int j=0 ; j < nodecount; j++){ s
+        for (auto& p : vc[j]){
+            
+        }
+    }
+ }
+*/
 void bellman_ford(int src) {
     int* dist = malloc(sizeof(int) * nodecount);
     // initial
