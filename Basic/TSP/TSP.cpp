@@ -5,7 +5,7 @@ using namespace std;
 #define MIN(X,Y) ((X) < (Y) ? (X) : (Y))
 
 char lists[17];
-int n, cnt, arr[17][17], dp[17][1 << 16];
+int n, cnt, dist[17][17], dp[17][1 << 16];
 
 // Traveling Salesman Problem
 int TSP(int cur, int visit)  // cur : current / visit = sum of visit city  - 5 : 0 1 0 1
@@ -16,17 +16,19 @@ int TSP(int cur, int visit)  // cur : current / visit = sum of visit city  - 5 :
 			return arr[cur][0];
 		return INF;				// Imposibble to return start point
 	*/
-		return arr[cur][0] ? arr[cur][0] : INF;
+		return dist[cur][0] ? dist[cur][0] : INF;
 	}
 	int& ret = dp[cur][visit];
 	if (ret != -1) return ret; // already visit  cur -> visit 
 
 	ret = INF;
-	for (int i=0; i<n; i++){
-		if (visit & (1 << i)) continue; // already vit city i
-		if (arr[cur][i] == 0) continue; // not destinated
-		ret = MIN(ret, arr[cur][i] + TSP(i, visit | (1 << i))); // minimum distance
+	for (int next = 0; next < n; next++)
+	{
+		if (visit & (1 << next)) continue;					// already vit city i
+		if (dist[cur][next] == 0) continue;					// not destinated
+		ret = MIN(ret, dist[cur][next] + TSP(next, visit | (1 << next))); // minimum distance  current->next + tsp(start next)
 	}
+	// minimum of current to visit
 	return ret;
 }
 
