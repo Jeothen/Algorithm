@@ -32,7 +32,7 @@ void recursive_combination(int n, int k, int q) {
     else if (n == 0) return;
     else {
         t2[k - 1] = data[n - 1];
-        recursive_combination(n, k - 1, q);
+        recursive_combination(n, k - 1, q); // duplication - n
         recursive_combination(n - 1, k, q);
     }
 }
