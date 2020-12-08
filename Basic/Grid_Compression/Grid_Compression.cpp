@@ -11,8 +11,6 @@ const int MAX = 1000 + 1;
 int arr[MAX][MAX], pSum[MAX][MAX];
 int y[MAX], x[MAX];
 
-//좌표 압축을 위해
-
 unordered_map<int, int> yHash, xHash;
 
 set<int> ySet, xSet;
@@ -47,7 +45,6 @@ int main(void)
 		for (int j = 0; j < X; j++)
 			pSum[i + 1][j + 1] = pSum[i + 1][j] + pSum[i][j + 1] - pSum[i][j] + arr[i][j];
 	int result = N;
-	//i, j를 기준으로 울타리를 이어나갈 때 사분면에 존재하는 최소 소의 숫자를 구한다
 	for (int i = 0; i <= X; i++)
 		for (int j = 0; j <= Y; j++)
 		{
