@@ -41,8 +41,8 @@ void combination2(int n, int q, int k, int start)
 	}
 }
 
+//powerset
 bool visited[10];
-
 void combination3(int n, int q, int k, int start)
 {
 	if (k == q){ // visited count is q
@@ -70,13 +70,15 @@ void combination4(int n, int k) {
 	for (int i=0; i<k; i++){
 		chk[i] = true;
 	}
+	sort(chk.begin(), chk.end());
 	do {
+		count4++;
 		for (int i=0; i<n; i++){
 			if (chk[i]) cout << data[i] << " ";
 		}
-		count4++;
 		cout << endl;
-	} while(prev_permutation(chk.begin(),chk.end()));
+	} while(next_permutation(chk.begin(),chk.end()));
+
 }
 
 int main() {
