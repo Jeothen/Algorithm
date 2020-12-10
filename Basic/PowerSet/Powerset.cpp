@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 int data[10];
 int t[10];
 int n;
@@ -24,7 +23,6 @@ void powerset(int n, int k) {
 	}
 }
 
-
 int main() {
 	n = 10;
 	count = 0;
@@ -32,6 +30,6 @@ int main() {
 		data[i] = i + 1;
 		t[i] = 0;
 	}
-	powerset(n, 0);
+	powerset(n, 0); // k start from 0
 	printf("%d\n", count);
 }
