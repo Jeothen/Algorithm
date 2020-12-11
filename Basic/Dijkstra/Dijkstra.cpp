@@ -1,39 +1,50 @@
-#include <cstdio>
-#include <algorithm>
+#include <iostream>
 #include <queue>
 #include <vector>
-#include <cstring>
+#include <algorithm>
 using namespace std;
-int v, e, s, x, y, z, d[20002];
-vector<vector<pair<int, int>>> vt;
-int main() {
-	scanf("%d%d%d", &v, &e, &s);
-	vt.resize(v + 1);
-	for (int i = 0; i < e; i++) {
-		scanf("%d%d%d", &x, &y, &z);
-		vt[x].push_back({ y,z });
-	}    //인접리스트로 그래프를 형성
-	memset(d, -1, sizeof(d));//거리가 담길 배열 d를 나올 수 없는 수(-1)로 초기화
-	priority_queue<pair<int, int>> pq;//정보를 담을 힙(거리,정점)
-	pq.push({ 0,s });//시작정점의 정보를 삽입
-	while (pq.size()) {//pq가 빌 때까지 다익스트라 알고리즘 동작
-		int here = pq.top().second;//현재 확인하는 정점
-		int cost = -pq.top().first;//거리(비용) -를 붙이는 이유는 pq를 minheap으로 사용하기 위함
+
+#define node 20001  // max node
+
+const int INF = 1e9;
+
+int start;
+vector<pair<int, int>> vc[node];  // node to node and value
+
+int dist[node];
+bool visited[node];
+
+priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; // calculate from minimum distance
+
+void dijkstra()
+{
+	pq.push({0, start});
+	while (!pq.empty())
+	{
+		int value = pq.top().first, now = pq.top().second;
+		visited[now] = true;
 		pq.pop();
-		if (d[here] != -1)
-			continue;//이미 계산되었다면 넘어감
-		d[here] = cost;//최단거리 정보를 갱신
-		for (auto it : vt[here]) {
-			int next = it.first;//다음 정점
-			int acost = -it.second - cost;//누적 된 거리
-			if (d[next] != -1)
-				continue;//이미 계산되었다면 넘어감
-			pq.push({ acost,next });
+		for (vector<int>::size_type i = 0; i < vc[now].size(); i++)
+		{
+			int d = vc[now][i].first, next = vc[now][i].second;
+			if (!visited[next])  // not visited
+			{
+				if (dist[next] > d + value) 
+				{
+					dist[next] = d + value;  // updated least distance
+					pq.push({dist[next], next});  
+				}
+			}
 		}
 	}
-	for (int i = 1; i <= v; i++) {
-		if (d[i] == -1)puts("INF");
-		else printf("%d\n", d[i]);
-	}//최단거리 출력
-	return 0;
+}
+
+void init(){
+	int nodecount;
+	for (int i = 1; i <= nodecount; i++)
+	{
+		dist[i] = INF;
+	}
+	dist[start] = 0;
+	dijkstra();
 }
