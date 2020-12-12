@@ -1,46 +1,50 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-#include <tuple>
 using namespace std;
-#define comput 1001
+#define nodecount 1001
 int n, m;
 
-priority_queue < tuple<int, int, int>, vector<tuple<int, int, int>>, greater<tuple<int, int, int>> > pq;
-int parent[comput], siz[comput];
-int answer, cnt;
+struct node {
+	int s, e, val;
+};
+vector <node> vc[nodecount];
+priority_queue<node,vector<node>,greater<node>> pq;
+
+int parent[nodecount];
+int start, cnt, edgecount;
 
 int find(int a) {
 	if (parent[a] == a) return a;
 	return find(parent[a]);
 }
 
-void mst() {
+int kruskal() {
+
+	for (int i=0; i<edgecount; i++) {
+		node e;
+		pq.push(e);
+	}
+
+	int ret = 0;
 	while (!pq.empty()) {
-		int value = get<0>(pq.top()), start = get<1>(pq.top()), end = get<2>(pq.top());
+		int value = pq.top().val, src = pq.top().s, tgt = pq.top().e;
 		pq.pop();
-		int p1 = find(start), p2 = find(end);
+		int p1 = find(src), p2 = find(tgt);
 		if (p1 != p2) {
-			answer += value;
+			// union
+			ret += value;
 			cnt++;
-			if (cnt == n - 1) break;
-			if (siz[p1] < siz[p2]) swap(p1, p2);
-			siz[p1]++;
-			parent[p2] = p1;
+			parent[p1] = p2;
+		}
+		if (cnt == n) {
+			cout << "cycle" << endl;
+			return -1;
 		}
 	}
-}
-
-int main() {
-	answer = 0;
-	scanf("%d %d", &n, &m);
-	int a, b, c;
-	for (int i = 0; i < m; i++) {
-		scanf("%d %d %d", &a, &b, &c);
-		pq.push({ c,a,b }); // 가중치, 시작, 도착
+	if (cnt != nodecount-1) {
+		cout << "all node not connected" << endl;
+		return -2;
 	}
-	for (int i = 1; i <= n; i++) siz[i] = 1;
-	for (int i = 1; i <= n; i++) parent[i] = i;
-	mst();
-	printf("%d\n", answer);
+	return ret;
 }
