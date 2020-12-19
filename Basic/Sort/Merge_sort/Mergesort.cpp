@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <iostream>
 #pragma warning(disable:4996)
 
 void merge(int *arr, int start, int mid, int end) {
@@ -32,17 +32,33 @@ void merge2(int* arr, int start, int mid, int end){
 	for (int i = start; i <= end; i++) arr[i] = tmp[i];
 }
 
-void mergesort(int *arr, int left, int right) {
+void merge_sort(int *arr, int left, int right) {
 	if (left < right) {
 		int mid = (left + right) / 2;
-		mergesort(arr, left, mid);
-		mergesort(arr, mid + 1, right);
+		merge_sort(arr, left, mid);
+		merge_sort(arr, mid + 1, right);
 		// using only one function merge2 -> source code
 		merge2(arr, left, mid, right);
 	}
 }
+
+
+int cmp(const void *a, const void *b)
+{
+	return (*(int *)a - *(int *)b);
+}
+
 int main() {
-	int arr[9] = { 2,4,7,1,2,10,2,2,5 };
-	mergesort(arr, 0, 8);
-	for (int i = 0; i < 9; i++) printf("%d ", arr[i]);
+	int arr[9] = {2, 4, 7, 1, 2, 10, 2, 2, 5};
+	int arr2[9] = {2, 4, 7, 1, 2, 10, 2, 2, 5};
+	
+	mergesort(arr2,9,sizeof(int),cmp);
+	for (int i = 0; i < 9; i++)
+		printf("%d ", arr2[i]);
+	printf("\n");
+
+
+	merge_sort(arr, 0, 8);
+	for (int i = 0; i < 9; i++)
+		printf("%d ", arr[i]);
 }
