@@ -5,6 +5,5 @@
 ### Algorithm
 
 * Suffix Array & LCP
-
 * Sqrt Decomposition
-
+* Fibonacci Heap
