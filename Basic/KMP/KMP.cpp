@@ -3,62 +3,41 @@
 #include <vector>
 
 using namespace std;
-
-int * getPi(string p) {
-	int len_p = (int)p.size();
-	int * pi = new int[len_p];
-	pi[0] = 0;
-	int j = 0;
-	for (int i = 1; i < (int)p.size(); i++) {
-		while (p[i] != p[j]) {
-			if (j == 0) {
-				pi[i] = j;
+// create fail function
+int * getPi(string pattern) {
+	int len_pattern = (int)pattern.size();
+	int * p = new int[len_pattern];
+	p[0] = 0;
+	int j = 0; // check index
+	for (int i = 1; i < len_pattern; i++) {
+		while (pattern[i] != pattern[j]) {
+			if (j == 0) { // up to j == 0, not occured pattern[i] == pattern[j],  p[i] = 0
+				p[i] = 0;
 				break;
 			}
-			j = pi[j - 1];
+			j = p[j - 1];  // It's same up to j-1
 		}
-		if (p[i] == p[j])
-			pi[i] = ++j;
+		if (pattern[i] == pattern[j]) p[i] = ++j; // j += 1, and then p[i] += 1
 	}
-	return pi;
+	return p;
 }
 
-vector<int> kmp(string t, string p, int * pi) {
+vector<int> kmp(string text, string pattern) {
+	int *p = getPi(pattern);
 	vector<int> v;
-	int j = 0, len_p = (int)p.size(), len_t = (int)t.size();
+	int j = 0, len_p = (int)pattern.size(), len_t = (int)text.size();
 	for (int i = 0; i < len_t; i++) {
-		while (t[i] != p[j]) {
-			if (j == 0)
-				break;
-			j = pi[j - 1];
+		while (text[i] != pattern[j]) {  // continuously find same value into fail function up to j == 0
+			if (j == 0) break;
+			j = p[j - 1];
 		}
-		if (t[i] == p[j]) {
+		if (text[i] == pattern[j]) {
 			j++;
-			if (j == len_p) {
-				v.push_back(i - len_p + 2);
-				j = pi[j - 1];
+			if (j == len_p) { // j start from 0
+				v.push_back(i - len_p + 2); // start index
+				j = p[j - 1];  //  fail function
 			}
 		}
 	}
 	return v;
-}
-
-int main(void) {
-
-	string text;
-	string pattern;
-	vector<int> v;
-
-	getline(cin, text);
-	getline(cin, pattern);
-
-	int * pi = getPi(pattern);
-
-	v = kmp(text, pattern, pi);
-
-	cout << (int)v.size() << endl;
-	for (vector<int>::size_type i = 0; i < v.size(); i++)
-		cout << v[i] << " ";
-
-	return 0;
 }
