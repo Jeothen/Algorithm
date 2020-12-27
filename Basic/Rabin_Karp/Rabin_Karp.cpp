@@ -10,7 +10,7 @@ std::vector<int> rabin_karp(char* text, char* pattern){
     for (lent = 0; text[lent] != '\0'; lent++);
     for (lenp = 0; pattern[lenp] != '\0'; lenp++);
     
-    // rabin - karb algorithm
+    // rabin - karp algorithm
     std::vector<int>vc;
     
     // calculate hash value
