@@ -3,7 +3,7 @@
 
 int ascii[256];
 
-void create_jump_table(char pattern[]){
+void create_Bad_Match_table(char pattern[]){
     int len_p;
     for (len_p = 0; pattern[len_p] != '\0'; len_p++);
     
@@ -23,7 +23,7 @@ std::vector<int>Hospool(char* text, char* pattern){
     int len_p, len_t;
     for (len_t = 0; text[len_t] != '\0'; len_t++);
     for (len_p = 0; pattern[len_p] != '\0'; len_p++);
-    create_jump_table(pattern);
+    create_Bad_Match_table(pattern);
 
     int i =0, j =0, k =0;
     while(i <= len_t-len_p) {

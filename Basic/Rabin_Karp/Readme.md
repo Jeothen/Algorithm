@@ -21,3 +21,7 @@
 $H[i+1] = t[i+1]*m^{n-1} + t[i+2]*m^{n-2} + ... + t[i+n-1]*m^{1}  + t[i+n]*m^0 \\
         = (t[i]*m^n + t[i+1]*m^{n-1} + t[i+2]*m^{n-2} + ... + t[i+n-1]*m^{1} - t[i]*m^n) + t[i+n]*m^0 \\ = (t[i]*m^{n-1}+ t[i+1]*m^{n-2} +... + t[i+n-1]*m^{0} - t[i]*m^{n-1})*m + t[i+n]*m^{0} \\ = m*(H[i] - t[i]*m^{n-1}) + t[i+n]*m^{0}$
 
+
+
+* So, best case, time complexity is O(N+M).
+* But worst case such as "AAAAAAAA", "AAA" : time complexity is O(NM)

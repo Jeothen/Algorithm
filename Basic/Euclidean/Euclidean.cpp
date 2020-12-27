@@ -14,6 +14,8 @@ int lcm(int a,int b){
     return a*b/gcd(a,b);
 }
 
+// visualization
+
 int main(){
     scanf("%d %d",&A,&B);
     printf("gcd : %d\n",gcd(A,B));
