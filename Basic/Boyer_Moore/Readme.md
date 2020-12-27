@@ -1,0 +1,39 @@
+# Boyer Moore
+
+
+
+* In the Boyer Moore, there's two approach
+
+  * Bad Character Heuristic
+    * Skip points that cannot be compared and move to the next index to be compared
+    * 
+
+  * Good Suffix Heuristic
+
+
+
+
+
+
+
+# Boyer Moore Hospool
+
+* It shows the same performance as the Boyer Moore Algorithm, but its implementation is very simple.
+
+
+
+* Create Bad Match Table
+  * First, fill all the values in the bad match table with the length of pattern.
+  * After that, While looping, Change the value to `pattern_length-index-1`
+  * The previous value is replaced with the next smaller value and changed to the minimum value.
+  * The last character is omitted in the loop process (because 0 is displayed)
+    * So, If last character occured previous, table value is that.
+    * However, If it does not appear, the value is assigned as the length of pattern
+
+
+
+* Hospool Algorithm
+  * Iterator from index 0 to the same as `length of text - length of pattern`
+  * Specify the index of pattern and text to the right of the string
+  * Moves from the right to next, compares one by one, and moves the pattern index by the value of `Bad Match Table` of the text at the wrong point
+
