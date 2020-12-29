@@ -24,7 +24,7 @@ void merge2(int* arr, int start, int mid, int end){
 	int tmp[10];
 	while (left <= mid || right <= end)
 	{
-		if (right > end || (left <= mid && arr[left] < arr[right]))
+		if (right > end || (left <= mid && arr[left] <= arr[right]))
 			tmp[idx++] = arr[left++];
 		else
 			tmp[idx++] = arr[right++];
@@ -37,8 +37,8 @@ void merge_sort(int *arr, int left, int right) {
 		int mid = (left + right) / 2;
 		merge_sort(arr, left, mid);
 		merge_sort(arr, mid + 1, right);
-		// using only one function merge2 -> source code
-		merge2(arr, left, mid, right);
+        merge(arr, left, mid, right);
+//		merge2(arr, left, mid, right);
 	}
 }
 
