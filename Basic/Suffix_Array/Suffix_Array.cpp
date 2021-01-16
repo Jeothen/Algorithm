@@ -36,6 +36,6 @@ vector<int> getsfx(string &str)
             tmp[SA[i+1]] = tmp[SA[i]] + cmp(SA[i],SA[i+1]); // if rank is differ, assign next rank
         }
         G = tmp;
-    }    
+    }
     return SA;
 }

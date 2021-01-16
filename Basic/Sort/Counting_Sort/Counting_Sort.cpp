@@ -36,7 +36,7 @@ void counting_sort(int* arr)
 }
 
 int main(void) {
-	int data[N] = { 5,3,4,5,3,4,1,5,4,1 };
+	int data[N] = { 10, 5,3,4,5,3,4,1,5,4 };
 
 	counting_sort(data);
 
