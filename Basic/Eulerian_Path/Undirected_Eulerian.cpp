@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 using namespace std;
-const int max_Ver = 1001;
+const int max_Ver =4;
 
 vector<int>adj[max_Ver];
 bool visited[max_Ver];
@@ -50,14 +50,20 @@ string check_eulerian(){
     int res = odd_node();
     if (res == 2) return "euler path";
     else if (res == 0) return "euler circuit";
-    else "not eulerian";
+    else return "not eulerian";
 }
 
 void init(){
     memset(visited,0,sizeof(visited));
-    cout << check_eulerian();
+    cout << check_eulerian() << endl;
 }
 
 int main(){
+/*    adj[0].push_back(1);
+    adj[1].push_back(0);
+    adj[0].push_back(2);
+    adj[2].push_back(0);
+    adj[1].push_back(2);
+    adj[2].push_back(1);*/
     init();
 }
