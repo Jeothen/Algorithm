@@ -1,5 +1,7 @@
 # Boyer Moore
 
+* Unlike other pattern matching algorithms, it checks from the back of the pattern.
+
 
 
 * In the Boyer Moore, there's two approach
