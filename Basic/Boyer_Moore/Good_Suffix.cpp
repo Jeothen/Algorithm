@@ -1,21 +1,19 @@
 #include <stdio.h>
 #include <string.h>
 
-// The preprocessing function for Boyer Moore's good suffix heuristic
-int *createGS(char *pat, int M)
+int *createGS(char *pattern, int M)
 {
     int *gs = new int[M];
     int i;     // index for pattern suffix
     int j = 0; // index for partial pattern suffix
 
     // initialize gs array
-    for (i = 0; i < M; ++i)
-        gs[i] = M;
+    for (i = 0; i < M; ++i) gs[i] = M;  // length of pattern
 
-    i = M - 1;
+    i = M - 1; // compare from last index
     while (i > 0)
     {
-        if (j >= 0 && pat[i + j] == pat[j])
+        if (j >= 0 && pattern[i + j] == pattern[j])
         {
             j--;
         }
@@ -42,11 +40,13 @@ int *createGS(char *pat, int M)
     return gs;
 }
 
-void searchBM(char *pat, char *txt)
+void searchBM(char *pattern, char *text)
 {
-    int N = strlen(txt);
-    int M = strlen(pat);
-    int *gs = createGS(pat, M);
+    int N = strlen(text);
+    int M = strlen(pattern);
+
+    int *gs = createGS(pattern, M);
+
     int s = 0; // Shift of the pattern with respect to text
     int j = 0; // Index for pat[]
 
