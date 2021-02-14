@@ -4,8 +4,8 @@
 int *createGS(char *pattern, int M)
 {
     int *gs = new int[M];
-    int i;     // index for pattern suffix
-    int j = 0; // index for partial pattern suffix
+    int i;     // pattern index
+    int j = 0; // partial pattern index
 
     // initialize gs array
     for (i = 0; i < M; ++i) gs[i] = M;  // length of pattern
@@ -54,11 +54,8 @@ void searchBM(char *pattern, char *text)
     {
         j = M - 1;
 
-        // Keep reducing index j of pattern while characters of
-        // pattern and text are matching at this shift s
-        while (j >= 0 && pat[j] == txt[s + j])
-            j--;
-
+        while (j >= 0 && pattern[j] == text[s + j]) j--;
+        
         if (j < 0)
         {
             printf("Pattern found at index %d \n", s);

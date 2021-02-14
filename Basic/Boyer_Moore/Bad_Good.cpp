@@ -8,8 +8,9 @@ int max(int a, int b) { return (a > b) ? a : b; }
 int *createBC(char *pat, int M)
 {
     int *bc = new int[NUM_OF_CHARS];
-    for (int i = 0; i < NUM_OF_CHARS; ++i)
-        bc[i] = -1;
+
+    for (int i = 0; i < NUM_OF_CHARS; ++i) bc[i] = -1;
+
     for (int i = 0; i < M - 1; ++i)
         bc[(int)pat[i]] = i;
     return bc;
@@ -57,23 +58,16 @@ void searchBM(char *pat, char *txt)
     {
         j = M - 1;
 
-        // Keep reducing index j of pattern while characters of
-        // pattern and text are matching at this shift s
-        while (j >= 0 && pat[j] == txt[s + j])
-            j--;
+        while (j >= 0 && pat[j] == txt[s + j]) j--;
 
         if (j < 0)
         {
             printf("Pattern found at index %d \n", s);
-            // Shift the pattern as the length of the maximum full suffix in pattern.
             s += gs[0];
         }
         else
         {
-            // Shift the pattern as max of bad character and good suffix.
-            // So, bad character or good suffix in text aligns with the last
-            // occurrence of it in pattern.
-            s += max(j - bc[txt[s + j]], gs[j]);  // Bad Character & Good Suffix
+            s += max(j - bc[txt[s + j]], gs[j]);  // Bad Character || Good Suffix
         }
     }
 
