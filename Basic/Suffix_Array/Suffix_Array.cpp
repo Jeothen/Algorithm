@@ -39,3 +39,10 @@ vector<int> getsfx(string &str)
     }
     return SA;
 }
+
+int main(){
+    string str = "ABCDAB";
+    vector<int> test = getsfx(str);
+    for (int i=0; i<test.size();i++) cout << test[i]<<" ";
+    cout << endl;
+}

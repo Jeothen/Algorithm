@@ -16,6 +16,9 @@ int *createBC(char *pat, int M)
     {
         bc[(int)pat[i]] = i;
     }
+    for (int i = 0; i < M; i++)
+        printf("%d ", bc[int(pat[i])]);
+    printf("\n");
     return bc;
 }
 
@@ -24,6 +27,7 @@ void searchBM(char *pat, char *txt)
     int N = strlen(txt);
     int M = strlen(pat);
     int *bc = createBC(pat, M);
+
     int s = 0; // Shift of the pattern with respect to text (start)
     int j = 0; // Index for pat[]
 
@@ -48,8 +52,8 @@ void searchBM(char *pat, char *txt)
 
 int main()
 {
-    char txt[] = "AABAACAADAABAAABAA";
-    char pat[] = "AABAAAA";
+    char txt[] = "AABACAADAABAAABAC";
+    char pat[] = "AABAC";
 
     searchBM(pat, txt);
 

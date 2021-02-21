@@ -1,43 +1,47 @@
 #include <stdio.h>
 #include <string.h>
 
+// unmatched minimum index
 int *createGS(char *pattern, int M)
 {
     int *gs = new int[M];
     int i;     // pattern index
-    int j = 0; // partial pattern index
+    int j = 0; // shift pattern index
 
-    // initialize gs array
     for (i = 0; i < M; ++i) gs[i] = M;  // length of pattern
-
     i = M - 1; // compare from last index
+
     while (i > 0)
     {
-        if (j >= 0 && pattern[i + j] == pattern[j])
+        if (j >= 0 && pattern[i + j] == pattern[j]) // matching
         {
             j--;
         }
         else
         {
-            if (j < 0)
+            if (j < 0) 
             {
-                // case 1. partial good suffix matches prefix of pattern
-                for (; i + j >= 0; --j)
+                // suffix matches prefix of pattern
+                for (; i + j >= 0; --j){
                     gs[i + j] = i;
+                }
             }
             else
             {
-                // case 2. good suffix matches somewhere in the pattern
-                // set i to the shift length in gs[] element
-                // whose index is the unmatched position
+                // shift index i that is the unmatched position
                 gs[i + j] = i;
             }
             j = M - i;
             i--;
         }
+        for (int z = 0; z < M; z++)
+            printf("%d ", gs[z]);
+        printf("\n");
     }
-
+    for (int z=0; z < M ; z++) printf("%d ",gs[z]);
+    printf("\n");
     return gs;
+
 }
 
 void searchBM(char *pattern, char *text)
@@ -55,7 +59,7 @@ void searchBM(char *pattern, char *text)
         j = M - 1;
 
         while (j >= 0 && pattern[j] == text[s + j]) j--;
-        
+
         if (j < 0)
         {
             printf("Pattern found at index %d \n", s);
@@ -77,8 +81,9 @@ void searchBM(char *pattern, char *text)
 int main()
 {
     char txt[] = "AABAACAADAABAAABAA";
-    char pat[] = "AABA";
-
+    char pat[] = "ABCDAB";
+    printf("%s\n",pat);
     searchBM(pat, txt);
+
     return 0;
 }
