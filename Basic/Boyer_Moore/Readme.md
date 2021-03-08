@@ -14,7 +14,9 @@
   * ##### Good Suffix Heuristic
 
     * Implement suffix array, and apply this to the index shift
-    * 가장 작은 index를 good suffix에 저장하기 때문에 마지막 index부터 시작
+    * start from last index because minimum index saved in the good suffix array
+
+    
 
 * When using Boyer Moore Algorithm, Consider both methods and apply effective way
 
