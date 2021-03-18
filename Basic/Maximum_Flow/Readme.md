@@ -28,7 +28,7 @@
   * Found by DFS (Ford-Fulkerson), time complexity is always O(V+E)
     * there's a two ways bottle-neck, Time complexity increases geometrically 
 
-  * Found by BFS (**Edmonds-Kark Algorithm**)
+  * Found by BFS (**Edmonds-Karp Algorithm**)
     * Maximum Time complexity is O(V*E^2)
 
 * Flow the smallest weight to all the edges that can go in the path.
