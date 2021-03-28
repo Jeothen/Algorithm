@@ -1,7 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-#define MAX_NODE 52
+#include <string.h>
+// 65 ~ 90 / 97 ~ 122
+#define MAX_NODE 60
 #define INF 2'100'000'000
 
 int min(int a, int b){
@@ -22,7 +24,7 @@ int maximum_flow(){
         memset(prev,-1,sizeof(prev));
         // Edmond-Karp Algorithm - BFS
         std::queue<int> q; q.push(start);
-        while(!q.empty() && prev[end] == -1) 
+        while(!q.empty())
         {
             int cur = q.front(); q.pop();
             for (auto next : adj[cur])
@@ -31,8 +33,8 @@ int maximum_flow(){
                 {
                     q.push(next);
                     prev[next] = cur;
+                    if (next == end) break; // arrived end node
                 }
-                if (next == end) break; // arrived end node
             }
         }
         if (prev[end] == -1) break; // there's no way to end node
@@ -50,17 +52,19 @@ int maximum_flow(){
             f[i][prev[i]] -= min_flow;  // reverse way
         }
         res += min_flow;
-    }    
+    }
     return res;
 }
 
-int main(){
+int main()
+{
     freopen("6086.txt","r",stdin);
     int N; scanf("%d",&N);
     char F, S; int V;
     for (auto i=0; i<N; ++i) {
         scanf(" %1c %1c %d",&F,&S,&V);
         int s = F-'A', e = S-'A';
+        // paraller
         c[s][e] += V; c[e][s] += V;
         adj[s].push_back(e);
         adj[e].push_back(s); // reverse way
