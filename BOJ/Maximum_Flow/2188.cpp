@@ -1,65 +1,78 @@
 #include <iostream>
-#include <queue>
 #include <vector>
-#include <algorithm>
-#define MAX 100
-#define INF 100000000
-using namespace std;
-
+#include <queue>
+#include <string.h>
 int N, M;
-int c[MAX][MAX], f[MAX][MAX], d[MAX];
-vector<int> a[MAX];
+#define MAX_NODE 402
+#define INF 2'000'000'000
 
-void maxFlow(int start, int end)
+int f[MAX_NODE][MAX_NODE], c[MAX_NODE][MAX_NODE];
+
+int min(int a, int b){
+    return a > b ? b : a;
+}
+
+int max_flow()
 {
-    while (1)
+    int res = 0;
+    int s = 0, e = N+M+1;
+    int prev[MAX_NODE];
+    while(1)
     {
-        fill(d, d + MAX, -1);
-        queue<int> q;
-        q.push(start);
-        while (!q.empty())
+        memset(prev,-1,sizeof(prev));
+        std::queue<int> q;
+        q.push(s);
+        while (!q.empty() && prev[e] == -1)
         {
-            int x = q.front();
-            q.pop();
-            for (int i = 0; i < a[x].size(); i++)
-            {
-                int y = a[x][i];
-                if (c[x][y] - f[x][y] > 0 && d[y] == -1)
+            int cur = q.front(); q.pop();
+            for (int next = 0; next <= N+M+1; next++) // all ways needed, if there's a way capacity is positive
+            { 
+                if (prev[next] == -1 && c[cur][next] > f[cur][next]) 
                 {
-                    q.push(y);
-                    d[y] = x; 
-                    if (y == end)
-                        break; 
+                    q.push(next);
+                    prev[next] = cur;
+                    if (next == e) break;
                 }
             }
         }
-        if (d[end] == -1)
-            break;
-        int flow = INF;
-        for (int i = end; i != start; i = d[i])
+        if (prev[e] == -1) break;
+        int min_flow = INF;
+        for (auto i = e; i != s; i = prev[i])
         {
-            flow = min(flow, c[d[i]][i] - f[d[i]][i]);
+            min_flow = min(min_flow, c[prev[i]][i]-f[prev[i]][i]);
         }
-        for (int i = end; i != start; i = d[i])
+        for (auto i = e; i != s; i = prev[i])
         {
-            f[d[i]][i] += flow;
-            f[i][d[i]] -= flow;
+            f[prev[i]][i] += min_flow; f[i][prev[i]] -= min_flow;
         }
-        result += flow;
+        res += min_flow;
     }
-}
+    return res;
+}   
 
 int main()
 {
     freopen("2188.txt","r",stdin);
     scanf("%d %d",&N,&M);
-    int s_node, e_node;
-    for (int i=0; i<N; i++)
+    for (int i=1;i<=N;i++)
     {
-        scanf("%d",&s_node);
-        for (int j=0; j<s_node; j++)
+        int val, S; scanf("%d",&S);
+        for (int j=0; j<S;j++)
         {
-            scanf("%d",&e_node);
-        } 
+            scanf("%d",&val);
+            val += N;
+            // if there's a biparate matching, reverse way is not associate. just one way
+            c[i][val] = 1;
+        }
     }
+    // virtual start 0, end node 401
+    for (int i=1; i<=N;i++)
+    {
+        c[0][i] = 1; 
+    }
+    for (int i=1; i<=M; i++)
+    {
+        c[i +N][N+M+1] = 1;
+    }
+    printf("%d\n",max_flow());
 }

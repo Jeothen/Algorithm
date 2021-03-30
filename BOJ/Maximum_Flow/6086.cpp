@@ -24,7 +24,7 @@ int maximum_flow(){
         memset(prev,-1,sizeof(prev));
         // Edmond-Karp Algorithm - BFS
         std::queue<int> q; q.push(start);
-        while(!q.empty())
+        while(!q.empty() && prev[end] == -1)
         {
             int cur = q.front(); q.pop();
             for (auto next : adj[cur])
