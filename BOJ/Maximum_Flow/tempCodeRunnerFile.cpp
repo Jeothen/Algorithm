@@ -1,1 +1,0 @@
-                    if (next == e) break;

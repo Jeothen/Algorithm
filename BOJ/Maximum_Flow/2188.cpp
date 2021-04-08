@@ -7,6 +7,7 @@ int N, M;
 #define INF 2'000'000'000
 
 int f[MAX_NODE][MAX_NODE], c[MAX_NODE][MAX_NODE];
+int adj[MAX_NODE][MAX_NODE];
 
 int min(int a, int b){
     return a > b ? b : a;
