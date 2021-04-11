@@ -35,3 +35,18 @@
 
   
 
+
+
+
+
+---
+
+* When passing through the edge only once, the capacity size is set to 1.
+* but, when passing node at once, visit[array] is not sufficient all case.
+  * If the the node has already visited, reverse flow is not considered.
+
+  * So,  setting to edges, not nodes(visit array), can be considered reverse flow
+
+  * Creating Every node's in / out and Flowing In to out.
+
+    
