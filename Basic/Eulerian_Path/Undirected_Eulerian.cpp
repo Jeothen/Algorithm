@@ -19,15 +19,15 @@ void dfs(int idx){
 bool isconnected(){ 
     memset(visited,0,sizeof(visited));
     
+
     int idx;
     for (idx=0; idx < max_Ver;idx++) {
         if(adj[idx].size() != 0) break;
     }
     // no-edge graph
-    if (idx == max_Ver) return true;
+    if (idx == max_Ver) return true; // ?? if max_Ver == 1 : true
 
     dfs(idx); // start node
-
     for (int i=0; i < max_Ver; i++){
         if (!visited[i] && adj[i].size()) return false;  // if node exists but not visited
     }
@@ -59,6 +59,7 @@ void init(){
 }
 
 int main(){
+
 /*    adj[0].push_back(1);
     adj[1].push_back(0);
     adj[0].push_back(2);
